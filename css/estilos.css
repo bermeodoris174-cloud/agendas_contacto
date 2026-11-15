@@ -1,0 +1,28 @@
+.tarjeta-formulario { max-width: 460px; margin: 0 auto; }
+:root {
+  --rosa: #b63ef7e0;
+  --rosa-oscuro: #b032eb;
+}
+
+.bg-primary { background-color: var(--rosa) !important; }
+
+.btn-primary {
+  --bs-btn-bg: var(--rosa);
+  --bs-btn-border-color: var(--rosa);
+  --bs-btn-hover-bg: var(--rosa-oscuro);
+  --bs-btn-hover-border-color: var(--rosa-oscuro);
+  --bs-btn-active-bg: var(--rosa-oscuro);
+  --bs-btn-active-border-color: var(--rosa-oscuro);
+  --bs-btn-disabled-bg: var(--rosa);
+  --bs-btn-disabled-border-color: var(--rosa);
+}
+.btn-outline-primary {
+  --bs-btn-color: var(--rosa);
+  --bs-btn-border-color: var(--rosa);
+  --bs-btn-hover-bg: var(--rosa);
+  --bs-btn-hover-border-color: var(--rosa);
+  --bs-btn-active-bg: var(--rosa);
+  --bs-btn-active-border-color: var(--rosa);
+}
+a { color: var(--rosa); }
+a:hover { color: var(--rosa-oscuro); }
