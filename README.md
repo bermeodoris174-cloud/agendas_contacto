@@ -32,7 +32,7 @@ Ejecución de 2 mejoras en nuestra aplicación web.
 - Servidor local: XAMPP, Laragon, WAMP o el servidor embebido de PHP
 
 ## Instalación
-1. Clona el repositorio o copia la carpeta en `htdocs` (XAMPP) o `www` (Laragon).
+1. Clona el repositorio o copia la carpeta en `htdocs` (XAMPP) o `www` (Laragon), **dándole el nombre de carpeta `agenda_contactos`**:
 2. Importa la base de datos:
    - phpMyAdmin → Importar → `sql/base_de_datos.sql`, o
    - Terminal: `mysql -u root -p < sql/base_de_datos.sql`
