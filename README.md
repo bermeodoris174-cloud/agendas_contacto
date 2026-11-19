@@ -1,11 +1,16 @@
 # Agenda de contactos (PHP + MySQL)
 Doris Nathaly Bermeo Bermeo
+
 Desarrollo Web
 
 ## Descripción
 Aplicación web donde cada usuario se registra, inicia sesión y administra su propia
 lista de contactos (registrar, editar y eliminar con confirmación). Un usuario nunca puede
 ver, editar ni eliminar contactos de otro usuario, aunque modifique manualmente la URL.
+
+Aplicacion de 2 mejoras en nuestra página web.
+1. Busqueda de los contactos ya sea por: Nombre, Teléfono, Correo o Ciudad. 
+2. Ordenamiento de toDos los contactos de la (A-Z) o tambien de la (Z-A)
 
 ## Tecnologías utilizadas
 - PHP 8.1+ (PDO, sesiones)
