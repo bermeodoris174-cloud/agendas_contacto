@@ -2,9 +2,25 @@
 require_once __DIR__ . '/includes/autenticacion.php';
 $usuario = exigir_sesion();
 
-$consulta = conexion()->prepare('SELECT id, nombre, telefono, correo, ciudad FROM contactos WHERE id_usuario = ? ORDER BY nombre');
-$consulta->execute([$usuario['id']]);
-$contactos = $consulta->fetchAll();
+// Búsqueda y ordenamiento (llegan por la URL con GET)
+$busqueda = trim((string)($_GET['q'] ?? ''));
+$orden = (($_GET['orden'] ?? 'asc') === 'desc') ? 'desc' : 'asc';
+$direccion = ($orden === 'desc') ? 'DESC' : 'ASC'; // solo toma uno de dos valores fijos
+
+$sql = 'SELECT id, nombre, telefono, correo, ciudad FROM contactos WHERE id_usuario = ?';
+$parametros = [$usuario['id']];
+
+if ($busqueda !== '') {
+    $patron = '%' . addcslashes($busqueda, '%_\\') . '%';
+    $sql .= ' AND (nombre LIKE ? OR telefono LIKE ? OR correo LIKE ? OR ciudad LIKE ?)';
+    array_push($parametros, $patron, $patron, $patron, $patron);
+}
+
+$sql .= " ORDER BY nombre $direccion";
+
+$consulta = conexion() ->prepare($sql);
+$consulta->execute($parametros);
+$contactos = $consulta ->fetchAll();
 
 $titulo = 'Panel principal';
 require __DIR__ . '/includes/encabezado.php';
@@ -21,8 +37,30 @@ require __DIR__ . '/includes/encabezado.php';
   <a href="formulario_contacto.php" class="btn btn-success">+ Nuevo contacto</a>
 </div>
 
+<form method="get" class="row g-2 mb-3 algin-items-center">
+  <div class="col-md-5">
+    <input type="search" name="q" class="form-control"
+           placeholder="Buscar por nombre, teléfono, correo o ciudad"
+           value="<?= escapar($busqueda) ?>">
+  </div>
+  <div class="col-auto">
+    <button class="btn btn-primary btn-sm">Buscar</button>
+  </div>
+  <div class="col-md-3">
+    <select name="orden" class="form-select" onchange="this.form.submit()">
+      <option value="asc"  <?= $orden === 'asc'  ? 'selected' : '' ?>>Ordenar de A a Z</option>
+      <option value="desc" <?= $orden === 'desc' ? 'selected' : '' ?>>Ordenar de Z a A</option>
+    </select>
+  </div>
+  <div class="col-auto">
+    <a href="panel.php" class="btn btn-secondary btn-sm">Limpiar</a>
+  </div>
+</form>
+
 <?php if (!$contactos): ?>
-  <div class="alert alert-info">Aún no tienes contactos registrados.</div>
+  <div class="alert alert-info">
+    <?= $busqueda !== '' ? 'No se encontraron contactos con esa búsqueda.' : 'Aún no tienes contactos registrados.' ?>
+  </div>
 <?php else: ?>
 <div class="table-responsive">
   <table class="table table-striped bg-white align-middle">
