@@ -11,6 +11,13 @@ ver, editar ni eliminar contactos de otro usuario, aunque modifique manualmente 
 Ejecución de 2 mejoras en nuestra aplicación web.
 1. Busqueda de los contactos ya sea por: Nombre, Teléfono, Correo o Ciudad. 
 2. Ordenamiento de toDos los contactos de la (A-Z) o tambien de la (Z-A)
+## Capturas de pantalla
+![Inicio de sesión](capturas/login.png)
+![Registro](capturas/registro.png)
+![Panel de contactos](capturas/panel.png)
+![Formulario de contacto](capturas/formulario.png)
+![Búsqueda de contactos](capturas/Busqueda.png)
+![Ordenamiento de contactos](capturas/orden.png)
 
 ## Tecnologías utilizadas
 - PHP 8.1+ (PDO, sesiones)
